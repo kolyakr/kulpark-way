@@ -1,5 +1,5 @@
 import Footer from "@/components/footer";
-import Header from "@/components/shared/header";
+import Header from "@/components/shared/header/index";
 import React from "react";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
