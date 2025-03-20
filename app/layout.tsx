@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "../assets/styles/globals.css";
 import { APP_DESCRIPTION, APP_TITLE } from "@/constants";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className}  antialiased`}>{children}</body>
+      <body className={`${montserrat.className}  antialiased`}>{children}</body>
     </html>
   );
 }

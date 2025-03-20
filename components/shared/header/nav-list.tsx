@@ -1,14 +1,15 @@
 import Link from "next/link";
 import React from "react";
-
-/*from constant render nav list*/
+import { navLinks } from "@/constants";
 
 const NavList = () => {
   return (
     <nav className="flex gap-6 text-xl text-white font-[700]">
-      <Link href="/">Link 1</Link>
-      <Link href="/">Link 2</Link>
-      <Link href="/">Link 3</Link>
+      {navLinks.map((link) => (
+        <Link key={link.name} href={link.href}>
+          {link.name}
+        </Link>
+      ))}
     </nav>
   );
 };
