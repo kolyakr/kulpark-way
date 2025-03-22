@@ -1,5 +1,5 @@
 "use server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { signIn } from "../auth";

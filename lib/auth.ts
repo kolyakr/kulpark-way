@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import prisma from "@/db/db";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({

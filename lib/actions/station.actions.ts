@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/db/db";
+import { Station } from "@prisma/client";
 
 export const getCities = async (search?: string) => {
   try {
@@ -23,7 +24,7 @@ export const getCities = async (search?: string) => {
       });
     }
 
-    const cities = stations.map((station) => {
+    const cities = stations.map((station: Station) => {
       return { value: station.city, id: station.id };
     });
     return cities;

@@ -18,15 +18,11 @@ type City = {
 };
 
 const SearchTicketForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    watch,
-  } = useForm<SearchTicketType>({
-    resolver: zodResolver(searchTicketSchema),
-  });
+  const { register, handleSubmit, setValue, watch } = useForm<SearchTicketType>(
+    {
+      resolver: zodResolver(searchTicketSchema),
+    }
+  );
 
   const [isToOpen, setIsToOpen] = useState<boolean>(false);
   const [isFromOpen, setIsFromOpen] = useState<boolean>(false);
