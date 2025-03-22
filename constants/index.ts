@@ -5,15 +5,15 @@ export const FOOTER_INFO = "NULP OI-22";
 export const navLinks = [
   {
     href: "/",
-    name: "Link",
+    name: "Ticket search",
   },
   {
     href: "/",
-    name: "Link",
+    name: "Help",
   },
   {
     href: "/",
-    name: "Link",
+    name: "About us",
   },
 ];
 

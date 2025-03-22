@@ -18,8 +18,10 @@ model User {
   accounts Account[]
   sessions Session[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Ticket    Ticket[]
+  Payment   Payment[]
 }
 
 model Account {
@@ -59,4 +61,80 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+}
+
+model Train {
+  id          String @id @default(cuid())
+  name        String
+  trainNumber String @unique
+  type        String
+  seats       Int
+
+  routes Route[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Station {
+  id   String  @id @default(cuid())
+  name String  @unique
+  city String
+  code String?
+
+  departures Route[] @relation("Departures")
+  arrivals   Route[] @relation("Arrivals")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Route {
+  id            String   @id @default(cuid())
+  trainId       String
+  departureId   String
+  arrivalId     String
+  departureTime DateTime
+  arrivalTime   DateTime
+  duration      Int
+
+  train     Train   @relation(fields: [trainId], references: [id], onDelete: Cascade)
+  departure Station @relation(fields: [departureId], references: [id], onDelete: Cascade, name: "Departures")
+  arrival   Station @relation(fields: [arrivalId], references: [id], onDelete: Cascade, name: "Arrivals")
+
+  tickets Ticket[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Ticket {
+  id      String @id @default(cuid())
+  userId  String
+  routeId String
+  seat    String
+  price   Float
+  status  String
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  route Route @relation(fields: [routeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Payment   Payment[]
+}
+
+model Payment {
+  id            String @id @default(cuid())
+  userId        String
+  ticketId      String
+  amount        Float
+  status        String
+  paymentMethod String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

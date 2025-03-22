@@ -3,7 +3,7 @@ import { loginUser } from "@/lib/actions/user.actions";
 import { LoginSchema, loginSchema } from "@/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -16,9 +16,13 @@ const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
   const onSubmit = async (data: LoginSchema) => {
-    const response = await loginUser(data);
-    console.log(response);
+    setIsSubmitting(true);
+    await loginUser(data).then(() => {
+      setIsSubmitting(false);
+    });
   };
 
   return (
@@ -56,7 +60,7 @@ const LoginForm = () => {
         type="submit"
         className="bg-gray-500  rounded-[20px] border mx-auto px-5 py-1 cursor-pointer text-white"
       >
-        Sign in
+        {isSubmitting ? "Signing in..." : "Sign in"}
       </button>
       <Link
         href="/register"
