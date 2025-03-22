@@ -103,7 +103,7 @@ const SearchTicketForm = () => {
   return (
     <form
       onSubmit={handleSubmitWithValidation}
-      className="bg-[var(--light-green-color)] rounded-[15px] p-12 flex justify-between items-end gap-3 flex-wrap mx-[20px] md:mx-[50px] xl:mx-[100px]"
+      className="bg-[var(--light-green-color)] rounded-[15px] p-12 flex justify-between items-end gap-3 flex-wrap"
     >
       <div className="flex gap-8 flex-wrap flex-col md:flex-row ">
         <div className="relative">
