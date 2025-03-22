@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <div className="mt-16 text-center px-6 max-w-3xl mx-auto">
+    <div className=" text-center px-6 max-w-3xl mx-auto">
       <motion.h2
         className="text-4xl font-extrabold bg-gradient-to-r from-green-500 to-green-700 text-transparent bg-clip-text"
         initial={{ opacity: 0, y: -20 }}
